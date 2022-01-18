@@ -4,6 +4,8 @@ import "../styles/index.css"
 import { Patient } from "../utils"
 
 import Context from "../components/Context"
+import Identifiers from "../components/Identifiers"
+import Diagnosis from "../components/Diagnosis"
 import Weight from "../components/Weight"
 import SCr from "../components/SCr"
 import CrCl from "../components/CrCl"
@@ -46,20 +48,28 @@ export default function Home() {
   }
 
   return (
-    <div className="container">
-      <Context pt={pt} />
-      <h1>Vanco AUC Calculator</h1>
-      <div style={{ display: "flex", gap: "4px" }}>
-        <div>
-          <Weight pt={pt} setPt={setPt} />
-          {reorder()}
-          {displayManualCrClLogic()}
-        </div>
-        <div>
-          {pt.weight && pt.crcl && <Vd pt={pt} setPt={setPt} />}
-          {pt.crcl && <Ke pt={pt} setPt={setPt} />}
+    <>
+      <div className="container" style={{ padding: "5px 10px" }}>
+        <Context pt={pt} />
+      </div>
+      <div className="container" style={{ background: "white" }}>
+        <h1>Vanco AUC Calculator</h1>
+        <div style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
+          <div>
+            <Identifiers pt={pt} setPt={setPt} />
+            <Diagnosis pt={pt} setPt={setPt} />
+          </div>
+          <div>
+            <Weight pt={pt} setPt={setPt} />
+            {reorder()}
+            {displayManualCrClLogic()}
+          </div>
+          <div>
+            {pt.weight && pt.crcl && <Vd pt={pt} setPt={setPt} />}
+            {pt.crcl && <Ke pt={pt} setPt={setPt} />}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

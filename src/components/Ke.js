@@ -26,6 +26,11 @@ const Ke = ({ pt, setPt }) => {
         K<sub>e</sub>
       </label>
       <input id="ke" type="number" placeholder="" disabled value={pt.ke} />
+      <label htmlFor="t1_2">
+        t<sub>1/2</sub>
+      </label>
+      <input id="t1_2" type="number" placeholder="" disabled value={pt.t1_2} />
+      <span>hrs</span>
     </div>
   )
 }

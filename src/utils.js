@@ -19,6 +19,14 @@ export class Patient {
     }
   }
 
+  get name() {
+    if (this.first_name && this.last_name) {
+      return `${this.last_name}, ${this.first_name}`
+    } else if (this.last_name) return this.last_name
+    else if (this.first_name) return this.first_name
+    return ""
+  }
+
   get ke_eqn_suggested() {
     if (this.bmi) {
       return this.bmi >= 30 ? "Crass" : "Matzke"

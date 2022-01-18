@@ -10,6 +10,7 @@
 }
 
 body {
+    background: #aaa;
     display: flex;
     justify-content: center;
     /* align-items: center; */
@@ -22,8 +23,8 @@ h1 {
 
 .container {
     width: 100%;
-    max-width: 600px;
-    padding: 0 20px;
+    max-width: 960px;
+    padding: 20px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
