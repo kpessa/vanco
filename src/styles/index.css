@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+}
+
+:root {
+    box-sizing: border-box;
+    font-family: Tahoma;
+    line-height: 1.5;
+    font-size: 12px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+/* TYPOGRAPHY */
+h1 {
+    margin-bottom: 1rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    display: inline-block;
+    width: 10ch;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.container span {
+    margin-left: 5px;
+}
+
+.container input,
+.container select {
+    width: 8ch;
+    font-size: 18px;
+    text-align: center;
+}
+
+.container select {
+    width: 9ch;
+}
+
+/* UTILITY CLASSES */
+.box {
+    width: 220px;
+    font-size: 12px;
+    line-height: 2rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
+
+pre {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
