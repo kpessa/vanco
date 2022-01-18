@@ -11,7 +11,8 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "dependencies": {
     "gatsby": "^4.5.3",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "babel-jest": "^27.4.6",
     "babel-preset-gatsby": "^2.5.2",
+    "gh-pages": "^3.2.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.4.7",
     "prettier": "^2.5.1",

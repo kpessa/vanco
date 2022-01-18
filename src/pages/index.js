@@ -20,7 +20,7 @@ export default function Home() {
 
   function reorder() {
     const displayLogic =
-      (pt.ibw_tbw && pt.ibw_tbw > 1.2) || (pt.scr && pt.scr < 1)
+      (pt.tbw_ibw && pt.tbw_ibw > 1.2) || (pt.scr && pt.scr < 1)
 
     if (pt.scr && pt.scr < 1) {
       return (
