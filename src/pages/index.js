@@ -12,18 +12,6 @@ import Vd from "../components/Vd"
 import Ke from "../components/Ke"
 
 export default function Home() {
-  // const initialPt = {
-  //   age: "",
-  //   height: "",
-  //   weight: "",
-  //   scr: "",
-  //   ibw: "",
-  //   bmi: "",
-  //   tbw_ibw: "",
-  //   manual_crcl: "",
-  //   crcl_calculated: "",
-  // }
-
   const [pt, setPt] = useState(new Patient({}))
 
   useEffect(() => {
@@ -32,8 +20,7 @@ export default function Home() {
 
   function reorder() {
     const displayLogic =
-      (pt.weight && pt.ibw && pt.weight / pt.ibw > 1.2) ||
-      (pt.scr && pt.scr < 1)
+      (pt.ibw_tbw && pt.ibw_tbw > 1.2) || (pt.scr && pt.scr < 1)
 
     if (pt.scr && pt.scr < 1) {
       return (
