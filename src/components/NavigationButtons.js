@@ -6,25 +6,29 @@ import { Patient } from "../utils"
 const NavigationButtons = ({ pt, setPt, page, setPage }) => {
   function handleSave(e) {
     e.preventDefault()
-    let localPts = localStorage.getItem("pts")
-    if (localPts) {
-      localPts = JSON.parse(localPts)
+    if (typeof window !== "undefined") {
+      let localPts = localStorage.getItem("pts")
+      if (localPts) {
+        localPts = JSON.parse(localPts)
+      } else {
+        localPts = []
+      }
+
+      let idx = localPts.findIndex(
+        currPt => currPt.mrn === pt.mrn || currPt.name === pt.name
+      )
+
+      if (idx === -1) {
+        localPts.push({ ...pt })
+      } else {
+        localPts[idx] = { ...pt }
+      }
+      localStorage.setItem("pts", JSON.stringify(localPts))
+
+      alert(`${pt.mrn ? pt.mrn + " - " : ""}${pt.name} saved.`)
     } else {
-      localPts = []
+      alert("Sorry, something went wrong. 😬")
     }
-
-    let idx = localPts.findIndex(
-      currPt => currPt.mrn === pt.mrn || currPt.name === pt.name
-    )
-
-    if (idx === -1) {
-      localPts.push({ ...pt })
-    } else {
-      localPts[idx] = { ...pt }
-    }
-    localStorage.setItem("pts", JSON.stringify(localPts))
-
-    alert(`${pt.mrn ? pt.mrn + " - " : ""}${pt.name} saved.`)
   }
 
   function handleNew(e) {

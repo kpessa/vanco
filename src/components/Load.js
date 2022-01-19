@@ -6,20 +6,19 @@ const Load = ({ pt, setPt }) => {
 
   const style = { width: "100%", textAlign: "left" }
 
-  let localPts = localStorage.getItem("pts")
-  if (localPts) {
-    localPts = JSON.parse(localPts)
-  } else {
-    localPts = []
+  let localPts
+  if (typeof window !== "undefined") {
+    localPts = localStorage.getItem("pts")
+    if (localPts) {
+      localPts = JSON.parse(localPts)
+    } else {
+      localPts = []
+    }
+    localPts = localPts.map(currPt => new Patient(currPt))
   }
-  localPts = localPts.map(currPt => new Patient(currPt))
 
   function handleLoad(e) {
-    console.log("LOCAL PATIENTS")
-    console.log(localPts)
-    console.log("SEARCH TERM")
     let searchTerm = document.getElementById("load").value
-    console.log(searchTerm)
 
     let idx = localPts.findIndex(
       currPt => String(currPt.mrn) === searchTerm || currPt.name === searchTerm

@@ -4,24 +4,28 @@ import { Patient } from "../utils"
 
 const style = { width: "100%", textAlign: "left" }
 
-let localPts = localStorage.getItem("pts")
-localPts = localPts ? JSON.parse(localPts) : []
-let providers = localPts
-  .map(currPt => currPt.provider)
-  .filter(name => name !== "")
-
 const Diagnosis = ({ pt, setPt }) => {
-  let indications = new Set(
-    "Cellulitis, Skin and Soft Tissue Infection, SSTI, Pneumonia, PNA, Osteomyelitis, Meningitis, Bacteremia, Endocarditis, Sepsis"
-      .split`, `
-  )
+  let providers = []
+  let indications = "Cellulitis, Skin and Soft Tissue Infection, SSTI, Pneumonia, PNA, Osteomyelitis, Meningitis, Bacteremia, Endocarditis, Sepsis"
+    .split`, `
 
-  indications = [
-    ...new Set([
-      ...indications,
-      ...localPts.map(currPt => currPt.indication).filter(name => name !== ""),
-    ]),
-  ]
+  if (typeof window !== "undefined") {
+    let localPts = localStorage.getItem("pts")
+    localPts = localPts ? JSON.parse(localPts) : []
+
+    providers = localPts
+      .map(currPt => currPt.provider)
+      .filter(name => name !== "")
+
+    indications = [
+      ...new Set([
+        ...indications,
+        ...localPts
+          .map(currPt => currPt.indication)
+          .filter(name => name !== ""),
+      ]),
+    ]
+  }
 
   return (
     <div className="box diagnosis">
