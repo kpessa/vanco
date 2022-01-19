@@ -5,11 +5,15 @@ import { Patient } from "../utils"
 const style = { width: "100%", textAlign: "left" }
 
 const Diagnosis = ({ pt, setPt }) => {
-  let providers = []
-  let indications = "Cellulitis, Skin and Soft Tissue Infection, SSTI, Pneumonia, PNA, Osteomyelitis, Meningitis, Bacteremia, Endocarditis, Sepsis"
-    .split`, `
+  const isBrowser = typeof window !== "undefined"
 
-  if (typeof window !== "undefined") {
+  let providers = []
+  let indications =
+    "Cellulitis, Skin and Soft Tissue Infection, SSTI, Pneumonia, PNA, Osteomyelitis, Meningitis, Bacteremia, Endocarditis, Sepsis".split(
+      ", "
+    )
+
+  if (isBrowser) {
     let localPts = localStorage.getItem("pts")
     localPts = localPts ? JSON.parse(localPts) : []
 

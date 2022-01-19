@@ -2,12 +2,12 @@ import React, { useRef } from "react"
 import { Patient } from "../utils"
 
 const Load = ({ pt, setPt }) => {
-  const inputEl = useRef(null)
+  const isBrowser = typeof window !== "undefined"
 
   const style = { width: "100%", textAlign: "left" }
 
-  let localPts
-  if (typeof window !== "undefined") {
+  let localPts = []
+  if (isBrowser) {
     localPts = localStorage.getItem("pts")
     if (localPts) {
       localPts = JSON.parse(localPts)
@@ -18,15 +18,18 @@ const Load = ({ pt, setPt }) => {
   }
 
   function handleLoad(e) {
-    let searchTerm = document.getElementById("load").value
+    if (isBrowser) {
+      let searchTerm = document.getElementById("load").value
 
-    let idx = localPts.findIndex(
-      currPt => String(currPt.mrn) === searchTerm || currPt.name === searchTerm
-    )
-    if (idx === -1) {
-      alert("Patient not found.")
-    } else {
-      setPt(localPts[idx])
+      let idx = localPts.findIndex(
+        currPt =>
+          String(currPt.mrn) === searchTerm || currPt.name === searchTerm
+      )
+      if (idx === -1) {
+        alert("Patient not found.")
+      } else {
+        setPt(localPts[idx])
+      }
     }
   }
 
@@ -46,7 +49,6 @@ const Load = ({ pt, setPt }) => {
         ))}
       </datalist>
       <button
-        ref={inputEl}
         style={{ width: "100%", textAlign: "center" }}
         onClick={e => handleLoad(e)}
       >
