@@ -13,8 +13,8 @@ const Ke = ({ pt, setPt }) => {
         id="ke_eqn"
         onChange={e => setPt(new Patient({ ...pt, ke_eqn: e.target.value }))}
       >
-        <option value="" disabled selected>
-          {pt.ke_eqn_suggested}
+        <option value="" disabled>
+          {" "}
         </option>
         <option value="Matzke">Matzke</option>
         <option value="Crass">Crass</option>

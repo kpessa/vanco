@@ -19,6 +19,64 @@ export class Patient {
     }
   }
 
+  popAUCRounded = function (dose, frequency) {
+    if (this.ke && this.vd && dose && frequency) {
+      return Math.round(this.popAUC(dose, frequency) / 10) * 10
+    }
+    return 0
+  }
+
+  popAUC = function (dose, frequency) {
+    let infusionRate = 1000
+    if (this.ke && this.vd && dose && frequency) {
+      let popCeoi = this.popCeoi(dose, frequency)
+      let popCmin = this.popCmin(dose, frequency)
+      let AUCinf = ((popCeoi + popCmin) / 2) * (dose / infusionRate)
+      let AUCeli = (popCeoi - popCmin) / this.ke
+      let MIC = 1
+      return ((AUCinf + AUCeli) * (24 / frequency)) / MIC
+    }
+    return 0
+  }
+
+  popCmax = function (dose, frequency) {
+    let infusionRate = 1000
+    if (this.ke && this.vd && dose && frequency)
+      return (
+        this.popCeoi(dose, frequency) /
+        Math.exp((-this.ke * dose) / infusionRate)
+      )
+    return 0
+  }
+
+  popCeoi = function (dose, frequency) {
+    if (this.ke && this.vd && dose && frequency)
+      return dose / this.vd / (1 - Math.exp(-this.ke * frequency))
+    return 0
+  }
+
+  popTroughRounded = function (dose, frequency) {
+    return Math.round(this.popTrough(dose, frequency))
+  }
+
+  popTrough = function (dose, frequency) {
+    let offset = 0.5 // trough 30 min before dose
+    if (this.ke && this.vd && dose && frequency) {
+      return (
+        this.popCmax(dose, frequency) *
+        Math.exp(-this.ke * (frequency - offset))
+      )
+    }
+    return 0
+  }
+
+  popCmin = function (dose, frequency) {
+    if (this.ke && this.vd && dose && frequency) {
+      return this.popCmax(dose, frequency) * Math.exp(-this.ke * frequency)
+    }
+    return 0
+  }
+
   get name() {
     if (this.first_name && this.last_name) {
       return `${this.last_name}, ${this.first_name}`
@@ -41,22 +99,29 @@ export class Patient {
     return ""
   }
 
+  get matske() {
+    return +((this.crcl * 0.689 + 3.66) * 0.06).toFixed(1)
+  }
+
+  get crass() {
+    if (this.age && this.scr && this.genderToChar && this.tbw) {
+      return +(
+        9.656 -
+        0.078 * this.age -
+        2.009 * this.scr +
+        1.09 * this.gender +
+        0.04 * this.tbw ** 0.75
+      ).toFixed(1)
+    }
+    return 0
+  }
+
   get clvanco() {
-    if (this.ke_eqn && this.crcl) {
-      if (this.ke_eqn === "Matzke") {
-        return +((this.crcl * 0.689 + 3.66) * 0.06).toFixed(1)
-      } else if (this.ke_eqn === "Crass") {
-        if (this.age && this.scr && this.genderToChar && this.tbw) {
-          return +(
-            9.656 -
-            0.078 * this.age -
-            2.009 * this.scr +
-            1.09 * this.gender +
-            0.04 * this.tbw ** 0.75
-          ).toFixed(1)
-        }
-        return ""
-      }
+    if ((this.ke_eqn || this.ke_eqn_suggested) && this.crcl) {
+      if (this.ke_eqn === "Matzke") return this.matske
+      else if (this.ke_eqn === "Crass") return this.crass
+      else if (this.ke_eqn_suggested === "Matzke") return this.matske
+      else if (this.ke_eqn_suggested === "Crass") return this.crass
     }
     return ""
   }
