@@ -4,7 +4,25 @@ import { Patient } from "../utils"
 
 const style = { width: "100%", textAlign: "left" }
 
+let localPts = localStorage.getItem("pts")
+localPts = localPts ? JSON.parse(localPts) : []
+let providers = localPts
+  .map(currPt => currPt.provider)
+  .filter(name => name !== "")
+
 const Diagnosis = ({ pt, setPt }) => {
+  let indications = new Set(
+    "Cellulitis, Skin and Soft Tissue Infection, SSTI, Pneumonia, PNA, Osteomyelitis, Meningitis, Bacteremia, Endocarditis, Sepsis"
+      .split`, `
+  )
+
+  indications = [
+    ...new Set([
+      ...indications,
+      ...localPts.map(currPt => currPt.indication).filter(name => name !== ""),
+    ]),
+  ]
+
   return (
     <div className="box diagnosis">
       <h1>Diagnosis</h1>
@@ -15,9 +33,15 @@ const Diagnosis = ({ pt, setPt }) => {
       <input
         style={style}
         id="provider"
+        list="providers-list"
         onChange={e => setPt(new Patient({ ...pt, provider: e.target.value }))}
         value={pt.provider}
       />
+      <datalist id="providers-list">
+        {providers.map((provider, idx) => (
+          <option key={idx}>{provider}</option>
+        ))}
+      </datalist>
       <label style={style} htmlFor="indication">
         Suspected Indication:
       </label>
@@ -25,11 +49,17 @@ const Diagnosis = ({ pt, setPt }) => {
       <input
         style={style}
         id="indication"
+        list="indications-list"
         onChange={e =>
           setPt(new Patient({ ...pt, indication: e.target.value }))
         }
         value={pt.indication}
       />
+      <datalist id="indications-list">
+        {indications.map((indication, idx) => (
+          <option key={idx}>{indication}</option>
+        ))}
+      </datalist>
     </div>
   )
 }
