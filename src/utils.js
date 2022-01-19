@@ -14,6 +14,21 @@ export function cockcroftGault(age, tbw, ibw, scr, gender) {
 
 export class Patient {
   constructor(data) {
+    this.mrn = ""
+    this.last_name = ""
+    this.first_name = ""
+    this.provider = ""
+    this.indication = ""
+    this.weight = ""
+    this.ibw = ""
+    this.scr = ""
+    this.age = ""
+    this.height = ""
+    this.gender = ""
+    this.manual_crcl = ""
+    this.vd_kg = ""
+    this.ke_eqn = ""
+
     for (let key in data) {
       this[key] = data[key]
     }

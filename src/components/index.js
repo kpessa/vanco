@@ -1,4 +1,5 @@
 import PatientInfo from "./PatientInfo"
+import Load from "../components/Load"
 import Identifiers from "../components/Identifiers"
 import Diagnosis from "../components/Diagnosis"
 import Weight from "../components/Weight"
@@ -9,9 +10,11 @@ import Vd from "../components/Vd"
 import Ke from "../components/Ke"
 import MaintenanceDoseTable from "../components/MaintenanceDoseTable"
 import NavigationButtons from "./NavigationButtons"
+import Buttons from "./Buttons"
 
 export {
   PatientInfo,
+  Load,
   Identifiers,
   Diagnosis,
   Weight,
@@ -22,4 +25,5 @@ export {
   Ke,
   MaintenanceDoseTable,
   NavigationButtons,
+  Buttons,
 }

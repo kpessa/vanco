@@ -1,6 +1,7 @@
 import React from "react"
 
 import {
+  Load,
   Identifiers,
   Diagnosis,
   Weight,
@@ -44,6 +45,7 @@ const PatientInfo = ({ pt, setPt }) => {
       <h1>Vanco AUC Calculator</h1>
       <div style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
         <div>
+          <Load pt={pt} setPt={setPt} />
           <Identifiers pt={pt} setPt={setPt} />
           <Diagnosis pt={pt} setPt={setPt} />
         </div>

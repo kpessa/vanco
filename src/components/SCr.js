@@ -15,7 +15,7 @@ const SCr = ({ pt, setPt }) => {
         value={pt.scr}
       />
       <span>mg/dL</span>
-      {pt.scr < 1 && (
+      {pt.scr && pt.scr < 1 && (
         <>
           <label htmlFor="scr_bmi">BMI</label>
           <input id="scr_bmi" disabled value={pt.bmi ? pt.bmi : "waiting.."} />
