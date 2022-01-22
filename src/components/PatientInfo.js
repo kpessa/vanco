@@ -14,8 +14,9 @@ import {
 
 const PatientInfo = ({ pt, setPt }) => {
   function reorder() {
-    const displayLogic =
+    const displayLogic = Boolean(
       (pt.tbw_ibw && pt.tbw_ibw > 1.2) || (pt.scr && pt.scr < 1)
+    )
 
     if (pt.scr && pt.scr < 1) {
       return (
@@ -27,7 +28,7 @@ const PatientInfo = ({ pt, setPt }) => {
     } else {
       return (
         <>
-          <SCr pt={pt} setPt={setPt} />
+          {<SCr pt={pt} setPt={setPt} />}
           {displayLogic && <CrClCalculated pt={pt} setPt={setPt} />}
         </>
       )

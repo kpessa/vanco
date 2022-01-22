@@ -57,12 +57,12 @@ const Context = ({ pt }) => {
       </ContextRender>
       <ContextRender>
         <ContextRenderLabels>
-          {pt.scr && <p>SCr:</p>}
+          {Boolean(pt.scr) && <p>SCr:</p>}
           {pt.crcl && <p>CrCl:</p>}
           {pt.wtUsed && <p>WtUsed:</p>}
         </ContextRenderLabels>
         <ContextRenderValues>
-          {pt.scr && <p>{pt.scr} mg/dL</p>}
+          {Boolean(pt.scr) && <p>{pt.scr} mg/dL</p>}
           {pt.crcl && <p>{pt.crcl} mL/min</p>}
           {pt.wtUsed && <p>{pt.wtUsed} kg</p>}
         </ContextRenderValues>

@@ -12,6 +12,11 @@ export function cockcroftGault(age, tbw, ibw, scr, gender) {
   return ""
 }
 
+function integerOrRoundNumber(number, decimalPlace) {
+  if (number % 1 == 0) return number
+  else return number.toFixed(decimalPlace)
+}
+
 export class Patient {
   constructor(data) {
     this.mrn = ""
@@ -173,7 +178,8 @@ export class Patient {
   }
 
   get adjBW() {
-    if (this.tbw && this.ibw) return this.ibw + 0.4 * (this.tbw - this.ibw)
+    if (this.tbw && this.ibw)
+      return integerOrRoundNumber(this.ibw + 0.4 * (this.tbw - this.ibw))
     return ""
   }
 

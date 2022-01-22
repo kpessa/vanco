@@ -1,21 +1,32 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 
 import { Patient } from "../utils"
 
 const SCr = ({ pt, setPt }) => {
+  let [inputValue, setInputValue] = useState(pt.scr ? pt.scr : "")
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log("hello")
+      setPt(new Patient({ ...pt, scr: +inputValue }))
+    }, 500)
+
+    return () => clearTimeout(timer)
+  }, [inputValue])
+
   return (
     <div className="box scr">
       <h1>SCr</h1>
       <label htmlFor="scr">SCr</label>
       <input
         id="scr"
-        onChange={e => setPt(new Patient({ ...pt, scr: +e.target.value }))}
+        onChange={e => setInputValue(e.target.value)}
         type="number"
         step="0.1"
-        value={pt.scr}
+        value={inputValue}
       />
       <span>mg/dL</span>
-      {pt.scr && pt.scr < 1 && (
+      {Boolean(pt.scr && pt.scr < 1) && (
         <>
           <label htmlFor="scr_bmi">BMI</label>
           <input id="scr_bmi" disabled value={pt.bmi ? pt.bmi : "waiting.."} />
