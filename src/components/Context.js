@@ -1,10 +1,6 @@
 import React from "react"
 
-import ContextRender from "./ContextRender"
-import ContextRenderLabels from "./ContextRenderLabels"
-import ContextRenderValues from "./ContextRenderValues"
-
-const Context = ({ pt }) => {
+export default function Context({ pt }) {
   let style = {
     display: "flex",
     gap: "10px",
@@ -97,4 +93,16 @@ const Context = ({ pt }) => {
   )
 }
 
-export default Context
+function ContextRender({ pt, setPt, children }) {
+  return <div style={{ display: "flex", gap: "3px" }}>{children}</div>
+}
+
+function ContextRenderLabels({ pt, setPt, children }) {
+  return (
+    <div style={{ textAlign: "right", fontWeight: "bold" }}>{children}</div>
+  )
+}
+
+function ContextRenderValues({ pt, setPt, children }) {
+  return <div>{children}</div>
+}

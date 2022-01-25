@@ -9,13 +9,6 @@ import { Patient } from "../../classes/Patient"
 import "./Characteristics.css"
 
 export default function Characteristics({ pt, setPt }) {
-  const [selectedItem, setSelectedItem] = React.useState()
-
-  const onChange = (event, item) => {
-    setSelectedItem(item)
-    setPt(new Patient({ ...pt, gender: item.key }))
-  }
-
   return (
     <div className="box characteristics">
       <h1>Characteristics</h1>

@@ -1,5 +1,5 @@
 import React from "react"
-import { Patient } from "../utils"
+import { Patient } from "../classes/Patient"
 
 const CrCl = ({ pt, setPt }) => {
   return (

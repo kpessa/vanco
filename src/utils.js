@@ -12,9 +12,12 @@ export function cockcroftGault(age, tbw, ibw, scr, gender) {
   return ""
 }
 
-function integerOrRoundNumber(number, decimalPlace) {
-  if (number % 1 == 0) return number
-  else return number.toFixed(decimalPlace)
+export function integerOrRoundNumber(number, decimalPlace = 1) {
+  if (typeof number === "number") {
+    if (number % 1 == 0) return number
+    else return +number.toFixed(decimalPlace)
+  }
+  return ""
 }
 
 export class Patient {

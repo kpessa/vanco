@@ -1,7 +1,7 @@
 import React from "react"
 import { navigate } from "gatsby"
 
-import { Patient } from "../utils"
+import { Patient } from "../classes/Patient"
 
 const NavigationButtons = ({ pt, setPt, page, setPage }) => {
   function handleSave(e) {
@@ -56,7 +56,7 @@ const NavigationButtons = ({ pt, setPt, page, setPage }) => {
       <button onClick={e => handleNew(e)}>New</button>
       <button
         onClick={() => setPage(page + 1)}
-        {...(page === 1 ? { disabled: true } : {})}
+        {...(page === 2 ? { disabled: true } : {})}
       >
         Next {">>"}
       </button>
