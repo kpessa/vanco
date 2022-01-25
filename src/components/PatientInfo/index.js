@@ -1,0 +1,61 @@
+import React from "react"
+
+import Load from "./Load"
+import Identifiers from "./Identifiers"
+import Diagnosis from "./Diagnosis"
+import Characteristics from "./Characteristics"
+
+const PatientInfo = ({ pt, setPt }) => {
+  // function reorder() {
+  //   const displayLogic = Boolean(
+  //     (pt.tbw_ibw && pt.tbw_ibw > 1.2) || (pt.scr && pt.scr < 1)
+  //   )
+
+  //   if (pt.scr && pt.scr < 1) {
+  //     return (
+  //       <>
+  //         {displayLogic && <CrClCalculated pt={pt} setPt={setPt} />}
+  //         <SCr pt={pt} setPt={setPt} />
+  //       </>
+  //     )
+  //   } else {
+  //     return (
+  //       <>
+  //         {<SCr pt={pt} setPt={setPt} />}
+  //         {displayLogic && <CrClCalculated pt={pt} setPt={setPt} />}
+  //       </>
+  //     )
+  //   }
+  // }
+
+  // function displayManualCrClLogic() {
+  //   if (pt.scr && pt.scr >= 1 && pt.tbw_ibw && pt.tbw_ibw < 1.2) {
+  //     return <CrCl pt={pt} setPt={setPt} />
+  //   }
+  // }
+
+  return (
+    <>
+      <h1>Vanco AUC Calculator</h1>
+      <div style={{ display: "flex", gap: "4px", flexWrap: "wrap" }}>
+        <div>
+          <Load pt={pt} setPt={setPt} />
+          <Identifiers pt={pt} setPt={setPt} />
+        </div>
+        <div>
+          <Diagnosis pt={pt} setPt={setPt} />
+          <Characteristics pt={pt} setPt={setPt} />
+          {/* <Weight pt={pt} setPt={setPt} /> */}
+          {/* {reorder()} */}
+          {/* {displayManualCrClLogic()} */}
+        </div>
+        {/* <div>
+          {pt.weight && pt.crcl && <Vd pt={pt} setPt={setPt} />}
+          {pt.crcl && <Ke pt={pt} setPt={setPt} />}
+        </div> */}
+      </div>
+    </>
+  )
+}
+
+export default PatientInfo

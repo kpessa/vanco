@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react"
 import { Helmet } from "react-helmet"
 import "../styles/newconsult.css"
 
-import { Patient } from "../utils"
+import { Patient } from "../classes/Patient"
 
 import Context from "../components/Context"
-import {
-  PatientInfo,
-  NavigationButtons,
-  MaintenanceDoseTable,
-} from "../components/"
+import { NavigationButtons, MaintenanceDoseTable } from "../components/"
+
+import PatientInfo from "../components/PatientInfo"
 
 export default function NewConsult() {
   const [pt, setPt] = useState(new Patient({}))

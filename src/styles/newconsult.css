@@ -30,23 +30,23 @@ h1 {
     align-items: center;
 }
 
-label {
+/* label {
     display: inline-block;
     width: 10ch;
     text-align: right;
     margin-right: 5px;
-}
+} */
 
-.container span {
+/* .container span {
     margin-left: 5px;
-}
+} */
 
-.container input,
+/* .container input,
 .container select {
     width: 8ch;
     font-size: 18px;
     text-align: center;
-}
+} */
 
 .container select {
     width: 9ch;

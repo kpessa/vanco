@@ -1,0 +1,11 @@
+.identifiers label {
+    display: inline-block;
+    width: 35%;
+    text-align: right;
+    padding-right: 1ch;
+    /* font-size: 12px; */
+}
+.identifiers .ms-TextField-fieldGroup {
+    display: inline-block;
+    width: 65%;
+}

@@ -1,7 +1,5 @@
 import PatientInfo from "./PatientInfo"
-import Load from "../components/Load"
-import Identifiers from "../components/Identifiers"
-import Diagnosis from "../components/Diagnosis"
+
 import Weight from "../components/Weight"
 import SCr from "../components/SCr"
 import CrCl from "../components/CrCl"
@@ -14,9 +12,6 @@ import Buttons from "./Buttons"
 
 export {
   PatientInfo,
-  Load,
-  Identifiers,
-  Diagnosis,
   Weight,
   SCr,
   CrCl,

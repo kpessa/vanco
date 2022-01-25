@@ -1,0 +1,23 @@
+.characteristics label {
+    display: inline-block;
+    text-align: right;
+    padding-right: 1ch;
+}
+
+.characteristics input {
+    text-align: center;
+}
+
+.characteristics .ms-TextField-wrapper {
+    display: grid;
+    grid-template-columns: 10ch 1fr;
+}
+
+.characteristics .ms-Dropdown-container {
+    display: grid;
+    grid-template-columns: 10ch 1fr;
+}
+
+.characteristics .ms-TextField-suffix span {
+    width: 3ch;
+}
