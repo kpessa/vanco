@@ -8,7 +8,6 @@ import { SelectionMode } from "@fluentui/react/lib/MarqueeSelection"
 import { Stack } from "@fluentui/react/lib/Stack"
 
 export default function VdPopulationEstimates() {
-  // Populate with items for demos.
   let items = [
     "Normal, 0.65",
     "Dehydrated, 0.5 - 0.6",

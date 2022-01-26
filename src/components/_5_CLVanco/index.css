@@ -1,0 +1,27 @@
+.clvanco {
+    width: 300px
+}
+
+.clvanco label {
+    display: inline-block;
+    text-align: right;
+    padding-right: 1ch;
+}
+
+.clvanco input {
+    text-align: center;
+}
+
+.clvanco .ms-TextField-wrapper {
+    display: grid;
+    grid-template-columns: 10ch 1fr;
+}
+
+.clvanco .ms-Dropdown-container {
+    display: grid;
+    grid-template-columns: 10ch 1fr;
+}
+
+.clvanco .ms-TextField-suffix span {
+    width: 8ch;
+}

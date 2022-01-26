@@ -14,10 +14,11 @@ import { Profile } from "../classes/Profile"
 import Context from "../components/Context"
 import { NavigationButtons, MaintenanceDoseTable } from "../components/"
 
-import PatientInfo from "../components/PatientInfo"
-import KidneyFunction from "../components/KidneyFunction"
-import LoadDose from "../components/LoadDose"
-import Vd from "../components/Vd"
+import PatientInfo from "../components/_1_PtInfo"
+import KidneyFunction from "../components/_2_KidneyFunction"
+import LoadDose from "../components/_3_LoadDose"
+import Vd from "../components/_4_Vd"
+import CLVanco from "../components/_5_CLVanco"
 
 export default function NewConsult() {
   const initialProfile = {
@@ -63,7 +64,8 @@ export default function NewConsult() {
             <Tab label="2. Kidney Function" {...a11yProps(1)} />
             <Tab label="3. LD" {...a11yProps(2)} />
             <Tab label="4. Vd" {...a11yProps(3)} />
-            <Tab label="6. MD" {...a11yProps(4)} />
+            <Tab label="5. CLVanco" {...a11yProps(4)} />
+            <Tab label="6. MD" {...a11yProps(5)} />
           </Tabs>
         </Box>
         <TabPanel page={page} index={0}>
@@ -79,6 +81,9 @@ export default function NewConsult() {
           <Vd pt={pt} setPt={setPt} />
         </TabPanel>
         <TabPanel page={page} index={4}>
+          <CLVanco pt={pt} setPt={setPt} />
+        </TabPanel>
+        <TabPanel page={page} index={5}>
           <MaintenanceDoseTable pt={pt} setPt={setPt} />
         </TabPanel>
         <NavigationButtons
