@@ -6,7 +6,9 @@ import Box from "@mui/material/Box"
 
 import "../styles/newconsult.css"
 
+import Headers from "../components/Headers"
 import Context from "../components/Context"
+import ContextBottom from "../components/ContextBottom"
 import NavigationButtons from "../components/NavigationButtons"
 
 import PatientInfo from "../components/_1_PtInfo"
@@ -43,10 +45,7 @@ export default function NewConsult() {
 
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Vanco AUC</title>
-      </Helmet>
+      <Headers title={"✅ New Consult"} />
       <div className="container" style={{ padding: "5px 10px" }}>
         <Context pt={pt} />
       </div>
@@ -91,6 +90,9 @@ export default function NewConsult() {
           pt={pt}
           setPt={setPt}
         />
+      </div>
+      <div className="container" style={{ padding: "5px 10px" }}>
+        <ContextBottom pt={pt} />
       </div>
     </>
   )

@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
 import Box from "@mui/material/Box"
 
+import Headers from "../components/Headers"
 import Context from "../components/Context"
 import ContextBottom from "../components/ContextBottom"
 import NavigationButtons from "../components/NavigationButtons"
@@ -39,10 +40,7 @@ export default function PostLevels(props) {
 
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Vanco AUC</title>
-      </Helmet>
+      <Headers title={"📊 Post Levels"} />
       <div className="container" style={{ padding: "5px 10px" }}>
         <Context pt={pt} />
       </div>
