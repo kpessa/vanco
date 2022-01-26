@@ -17,6 +17,7 @@ import { NavigationButtons, MaintenanceDoseTable } from "../components/"
 import PatientInfo from "../components/PatientInfo"
 import KidneyFunction from "../components/KidneyFunction"
 import LoadDose from "../components/LoadDose"
+import Vd from "../components/Vd"
 
 export default function NewConsult() {
   const initialProfile = {
@@ -61,7 +62,8 @@ export default function NewConsult() {
             <Tab label="1. PtInfo" {...a11yProps(0)} />
             <Tab label="2. Kidney Function" {...a11yProps(1)} />
             <Tab label="3. LD" {...a11yProps(2)} />
-            <Tab label="6. MD" {...a11yProps(3)} />
+            <Tab label="4. Vd" {...a11yProps(3)} />
+            <Tab label="6. MD" {...a11yProps(4)} />
           </Tabs>
         </Box>
         <TabPanel page={page} index={0}>
@@ -74,6 +76,9 @@ export default function NewConsult() {
           <LoadDose pt={pt} setPt={setPt} pr={pr} setPr={setPr} />
         </TabPanel>
         <TabPanel page={page} index={3}>
+          <Vd pt={pt} setPt={setPt} />
+        </TabPanel>
+        <TabPanel page={page} index={4}>
           <MaintenanceDoseTable pt={pt} setPt={setPt} />
         </TabPanel>
         <NavigationButtons

@@ -1,0 +1,23 @@
+.scr .ms-TextField-wrapper label {
+    display: inline-block;
+    text-align: right;
+    padding-right: 1ch;
+}
+
+.scr input {
+    text-align: center;
+}
+
+.scr .ms-TextField-wrapper {
+    display: grid;
+    grid-template-columns: 10ch 1fr;
+}
+
+.scr .ms-Dropdown-container {
+    display: grid;
+    grid-template-columns: 10ch 1fr;
+}
+
+.scr .ms-TextField-suffix span {
+    width: 5ch;
+}

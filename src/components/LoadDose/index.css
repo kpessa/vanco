@@ -1,0 +1,44 @@
+.load-estimates {
+    width: 300px;
+}
+
+.load-estimates td {
+    background: #f5f5f5;
+    
+}
+
+.load-estimates tr:nth-last-of-type(1)>* {
+    border-bottom: 1px solid #000;
+}
+
+.box.load-dose {
+    width: 300px;
+}
+
+.box.load-calculations {
+    width: 300px;
+}
+
+.load-dose label {
+    display: inline-block;
+    text-align: right;
+    padding-right: 1ch;
+}
+
+.load-dose input {
+    text-align: center;
+}
+
+.load-dose .ms-TextField-wrapper {
+    display: grid;
+    grid-template-columns: 20ch 1fr;
+}
+
+.load-dose .ms-Dropdown-container {
+    display: grid;
+    grid-template-columns: 20ch 1fr;
+}
+
+.load-dose .ms-TextField-suffix span {
+    width: 6ch;
+}

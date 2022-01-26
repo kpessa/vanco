@@ -1,0 +1,27 @@
+.crcl_calculated label {
+    display: inline-block;
+    text-align: right;
+    padding-right: 1ch;
+}
+
+.crcl_calculated input {
+    text-align: center;
+}
+
+.crcl_calculated .ms-TextField-wrapper {
+    display: grid;
+    grid-template-columns: 10ch 1fr;
+}
+
+.crcl_calculated .ms-Dropdown-container {
+    display: grid;
+    grid-template-columns: 10ch 1fr;
+}
+
+.crcl_calculated .ms-TextField-suffix span {
+    width: 3ch;
+}
+
+#calculated_crcl + .ms-TextField-suffix span {
+    width: 6ch;
+}

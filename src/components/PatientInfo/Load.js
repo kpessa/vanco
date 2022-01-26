@@ -54,6 +54,7 @@ export default function Load({ pt, setPt }) {
           label="Load patient:"
           list="patients"
           placeholder="Click to see dropdown list"
+          autoComplete="off"
         />
 
         <datalist id="patients">

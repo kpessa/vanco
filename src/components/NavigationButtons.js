@@ -56,7 +56,7 @@ const NavigationButtons = ({ pt, setPt, page, setPage }) => {
       <button onClick={e => handleNew(e)}>New</button>
       <button
         onClick={() => setPage(page + 1)}
-        {...(page === 2 ? { disabled: true } : {})}
+        {...(page === 8 ? { disabled: true } : {})}
       >
         Next {">>"}
       </button>
