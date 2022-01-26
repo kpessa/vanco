@@ -1,5 +1,7 @@
 import { integerOrRoundNumber } from "../utils"
 
+import moment from "moment"
+
 export class Patient {
   // @collapse
   constructor(data) {
@@ -27,15 +29,20 @@ export class Patient {
     this.vd_kg = ""
 
     // 5. CLVanco
-
     this.ke_eqn = ""
+
+    // 7. PtPk - Ke
+    this.level1 = ""
+    this.level1_dt_input = ""
+    this.level2 = ""
+    this.level2_dt_input = ""
 
     for (let key in data) {
       this[key] = data[key]
     }
   }
 
-  // Identifier Methods
+  // 1. PtInfo
   get name() {
     if (this.first_name && this.last_name) {
       return `${this.last_name}, ${this.first_name}`
@@ -81,6 +88,7 @@ export class Patient {
         ans = 45.5 + 2.3 * (this.heightToInches - 60)
       return integerOrRoundNumber(+ans)
     }
+    return ""
   }
   get tbw_ibw() {
     if (this.tbw && this.ibw) {
@@ -111,7 +119,7 @@ export class Patient {
         : this.ibw
     return ""
   }
-  // Kidney Function Methods
+  // 2. Kidney Function Methods
   get scr() {
     if (this.scr_adjusted) return +this.scr_adjusted
     if (this.scr_level) return +this.scr_level
@@ -133,7 +141,7 @@ export class Patient {
       ? this.calculated_crcl
       : ""
   }
-  // Load Dose Methods
+  // 3. Load Dose Methods
   get lddose_calculated() {
     if (this.tbw && this.dosing) {
       return integerOrRoundNumber(this.tbw * this.dosing, 2)
@@ -146,6 +154,88 @@ export class Patient {
     }
     return ""
   }
+  // 4. Vd Methods
+  get vd_kg_suggested() {
+    if (this.weight && this.height) {
+      return this.bmi >= 30 ? 0.5 : 0.65
+    }
+    return 0.65
+  }
+  get vd() {
+    if (this.tbw && this.vd_kg) {
+      return +(this.tbw * this.vd_kg).toFixed(1)
+    }
+    return ""
+  }
+  // 5. CLVanco Methods
+  get ke_eqn_suggested() {
+    if (this.bmi) {
+      return this.bmi >= 30 ? "Crass" : "Matzke"
+    }
+    return ""
+  }
+  get t1_2() {
+    if (this.ke) {
+      return +(0.693 / this.ke).toFixed(1)
+    }
+    return ""
+  }
+  get matske() {
+    return +((this.crcl * 0.689 + 3.66) * 0.06).toFixed(1)
+  }
+  get crass() {
+    if (this.age && this.scr && this.genderToChar && this.tbw) {
+      return +(
+        9.656 -
+        0.078 * this.age -
+        2.009 * this.scr +
+        1.09 * this.gender +
+        0.04 * this.tbw ** 0.75
+      ).toFixed(1)
+    }
+    return 0
+  }
+  get clvanco() {
+    if ((this.ke_eqn || this.ke_eqn_suggested) && this.crcl) {
+      if (this.ke_eqn === "Matzke") return this.matske
+      else if (this.ke_eqn === "Crass") return this.crass
+      else if (this.ke_eqn_suggested === "Matzke") return this.matske
+      else if (this.ke_eqn_suggested === "Crass") return this.crass
+    }
+    return ""
+  }
+  get ke() {
+    if (this.clvanco && this.vd) return +(this.clvanco / this.vd).toFixed(4)
+    return ""
+  }
+  // 7. PtPk - Ke
+  get level1_dt() {
+    let dateRegExp = /\d{2}\/\d{2} \d{2}:\d{2}/
+    if (dateRegExp.test(this.level1_dt_input)) {
+      let match = this.level1_dt_input.match(dateRegExp)
+      console.log(match[0])
+      return moment(match[0], "MM/DD HH:mm").format("MM/DD HH:mm")
+    }
+    return ""
+  }
+  get level2_dt() {
+    let dateRegExp = /\d{2}\/\d{2} \d{2}:\d{2}/
+    if (dateRegExp.test(this.level2_dt_input)) {
+      let match = this.level2_dt_input.match(dateRegExp)
+      console.log(match[0])
+      return moment(match[0], "MM/DD HH:mm").format("MM/DD HH:mm")
+    }
+    return ""
+  }
+  get ptKeRounded() {
+    if (this.ptKe) return integerOrRoundNumber(this.ptKe, 4)
+    return ""
+  }
+  get ptT1_2Rounded() {
+    if (this.ptT1_2) return integerOrRoundNumber(this.ptT1_2, 1)
+    return ""
+  }
+
   // PK Methods
   popAUCRounded = function (dose, frequency) {
     if (this.ke && this.vd && dose && frequency) {
@@ -197,59 +287,5 @@ export class Patient {
       return this.popCmax(dose, frequency) * Math.exp(-this.ke * frequency)
     }
     return 0
-  }
-  get ke_eqn_suggested() {
-    if (this.bmi) {
-      return this.bmi >= 30 ? "Crass" : "Matzke"
-    }
-    return ""
-  }
-  get t1_2() {
-    if (this.ke) {
-      return +(0.693 / this.ke).toFixed(1)
-    }
-    return ""
-  }
-  get matske() {
-    return +((this.crcl * 0.689 + 3.66) * 0.06).toFixed(1)
-  }
-  get crass() {
-    if (this.age && this.scr && this.genderToChar && this.tbw) {
-      return +(
-        9.656 -
-        0.078 * this.age -
-        2.009 * this.scr +
-        1.09 * this.gender +
-        0.04 * this.tbw ** 0.75
-      ).toFixed(1)
-    }
-    return 0
-  }
-  get clvanco() {
-    if ((this.ke_eqn || this.ke_eqn_suggested) && this.crcl) {
-      if (this.ke_eqn === "Matzke") return this.matske
-      else if (this.ke_eqn === "Crass") return this.crass
-      else if (this.ke_eqn_suggested === "Matzke") return this.matske
-      else if (this.ke_eqn_suggested === "Crass") return this.crass
-    }
-    return ""
-  }
-  get ke() {
-    if (this.clvanco && this.vd) return +(this.clvanco / this.vd).toFixed(4)
-    return ""
-  }
-
-  get vd_kg_suggested() {
-    if (this.weight && this.height) {
-      return this.bmi >= 30 ? 0.5 : 0.65
-    }
-    return 0.65
-  }
-
-  get vd() {
-    if (this.tbw && this.vd_kg) {
-      return +(this.tbw * this.vd_kg).toFixed(1)
-    }
-    return ""
   }
 }

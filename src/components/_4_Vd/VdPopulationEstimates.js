@@ -1,10 +1,5 @@
 import React from "react"
 
-import {
-  DetailsList,
-  DetailsListLayoutMode,
-} from "@fluentui/react/lib/DetailsList"
-import { SelectionMode } from "@fluentui/react/lib/MarqueeSelection"
 import { Stack } from "@fluentui/react/lib/Stack"
 
 export default function VdPopulationEstimates() {
@@ -71,7 +66,7 @@ export default function VdPopulationEstimates() {
           </thead>
           <tbody style={{ lineHeight: "16px" }}>
             {items.map((item, i) => (
-              <tr key={i}>
+              <tr key={i + "A"}>
                 <td
                   style={{
                     textAlign: "right",
@@ -84,7 +79,7 @@ export default function VdPopulationEstimates() {
                   {item.split(", ")[0] + ": "}
                 </td>
                 <td
-                  key={i}
+                  key={i + "B"}
                   style={{
                     textAlign: "center",
                     paddingBottom: paddingBottom(i),

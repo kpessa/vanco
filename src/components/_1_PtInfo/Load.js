@@ -1,14 +1,12 @@
-import React, { textFieldValue } from "react"
+import React, { useState } from "react"
 import { Patient } from "../../classes/Patient"
-import { Separator } from "@fluentui/react/lib/Separator"
-import { createTheme } from "@fluentui/react/lib/Styling"
 import { TextField } from "@fluentui/react/lib/TextField"
-import { DefaultButton, PrimaryButton } from "@fluentui/react/lib/Button"
+import { PrimaryButton } from "@fluentui/react/lib/Button"
 import { Stack } from "@fluentui/react/lib/Stack"
-import { useId } from "@fluentui/react-hooks"
 
 export default function Load({ pt, setPt }) {
   const isBrowser = typeof window !== "undefined"
+  const [inputValue, setInputValue] = useState("")
 
   let localPts = []
   if (isBrowser) {
@@ -55,6 +53,8 @@ export default function Load({ pt, setPt }) {
           list="patients"
           placeholder="Click to see dropdown list"
           autoComplete="off"
+          value={inputValue}
+          onChange={e => setInputValue(e.target.value)}
         />
 
         <datalist id="patients">
@@ -62,10 +62,11 @@ export default function Load({ pt, setPt }) {
             <option key={idx}>{optionValue}</option>
           ))}
         </datalist>
-        <DefaultButton
+        <PrimaryButton
           text="Load"
           onClick={e => handleLoad(e)}
           allowDisabledFocus
+          disabled={!Boolean(inputValue)}
         />
       </Stack>
     </div>

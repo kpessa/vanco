@@ -65,6 +65,7 @@ export default function Context({ pt }) {
       </ContextRender>
       <ContextRender>
         <ContextRenderLabels>
+          {Boolean(pt.vd || pt.ke) && "Population"}
           {pt.ke_eqn && <p>Eqn Used:</p>}
           {pt.vd && <p>Vd:</p>}
           {pt.ke && <p>Ke:</p>}
@@ -72,6 +73,7 @@ export default function Context({ pt }) {
           {pt.clvanco && <p>CLVanco:</p>}
         </ContextRenderLabels>
         <ContextRenderValues>
+          {Boolean(pt.vd || pt.ke) && "Estimates"}
           {pt.ke_eqn && <p>{pt.ke_eqn}</p>}
           {pt.vd && <p>{pt.vd} L</p>}
           {pt.ke && <p>{pt.ke}</p>}

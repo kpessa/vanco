@@ -3,22 +3,21 @@ import { Helmet } from "react-helmet"
 import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
 import Box from "@mui/material/Box"
-import { grey } from "@mui/material/colors"
-import { createTheme } from "@mui/material/styles"
 
 import "../styles/newconsult.css"
 
-import { Patient } from "../classes/Patient"
-import { Profile } from "../classes/Profile"
-
 import Context from "../components/Context"
-import { NavigationButtons, MaintenanceDoseTable } from "../components/"
+import NavigationButtons from "../components/NavigationButtons"
 
 import PatientInfo from "../components/_1_PtInfo"
 import KidneyFunction from "../components/_2_KidneyFunction"
 import LoadDose from "../components/_3_LoadDose"
 import Vd from "../components/_4_Vd"
 import CLVanco from "../components/_5_CLVanco"
+import MaintenanceDoseTable from "../components/MaintenanceDoseTable"
+
+import { Patient } from "../classes/Patient"
+import { Profile } from "../classes/Profile"
 
 export default function NewConsult() {
   const initialProfile = {

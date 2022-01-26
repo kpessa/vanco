@@ -2,7 +2,6 @@ import React from "react"
 
 import { Stack } from "@fluentui/react/lib/Stack"
 import { TextField } from "@fluentui/react/lib/TextField"
-import { DetailsList } from "@fluentui/react/lib/DetailsList"
 
 import { Patient } from "../../classes/Patient"
 
@@ -21,8 +20,9 @@ export default function Vd({ pt, setPt }) {
               <TextField
                 label="Vd"
                 suffix="L/kg"
-                placeholder={pt.vd_kg_suggested}
+                {...(pt.vd_kg ? {} : { placeholder: pt.vd_kg_suggested })}
                 required
+                value={pt.vd_kg}
                 {...(pt.vd_kg
                   ? {}
                   : {

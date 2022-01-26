@@ -3,7 +3,7 @@ import { navigate } from "gatsby"
 
 import { Patient } from "../classes/Patient"
 
-const NavigationButtons = ({ pt, setPt, page, setPage }) => {
+export default function NavigationButtons({ pt, setPt, page, setPage }) {
   function handleSave(e) {
     e.preventDefault()
     if (typeof window !== "undefined") {
@@ -63,5 +63,3 @@ const NavigationButtons = ({ pt, setPt, page, setPage }) => {
     </div>
   )
 }
-
-export default NavigationButtons

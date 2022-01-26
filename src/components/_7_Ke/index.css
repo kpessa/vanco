@@ -1,0 +1,23 @@
+.pt-ke label {
+    display: inline-block;
+    text-align: right;
+    padding-right: 1ch;
+}
+
+.pt-ke input {
+    text-align: center;
+}
+
+.pt-ke .ms-TextField-wrapper {
+    display: grid;
+    grid-template-columns: 10ch 1fr;
+}
+
+.pt-ke .ms-Dropdown-container {
+    display: grid;
+    grid-template-columns: 10ch 1fr;
+}
+
+.pt-ke .ms-TextField-suffix span {
+    width: 3ch;
+}

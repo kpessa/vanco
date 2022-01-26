@@ -1,4 +1,3 @@
-import { Stack } from "@fluentui/react"
 import React from "react"
 
 export default function LoadEstimates() {
@@ -51,12 +50,12 @@ export default function LoadEstimates() {
                   fontWeight: 600,
                   paddingRight: "5px",
                 }}
-                key={i}
+                key={i + "A"}
               >
                 {item.split(", ")[0] + ": "}
               </td>
               <td
-                key={i}
+                key={i + "B"}
                 style={{
                   textAlign: "center",
                 }}
