@@ -3,7 +3,7 @@ import { integerOrRoundNumber } from "../utils"
 export class Patient {
   // @collapse
   constructor(data) {
-    // PtInfo
+    // 1. PtInfo
     this.mrn = ""
     this.last_name = ""
     this.first_name = ""
@@ -15,16 +15,19 @@ export class Patient {
     this.height = ""
     this.weight = ""
     this.gender = ""
-    // KidneyFunction
+    // 2. KidneyFunction
     this.scr_level = ""
-    // Load Dose
+    this.manual_crcl = ""
+    // 3. Load Dose
     this.dosing = ""
     this.max_dose = ""
     this.lddose = ""
     this.ldinf = ""
-
-    this.manual_crcl = ""
+    // 4. Vd
     this.vd_kg = ""
+
+    // 5. CLVanco
+
     this.ke_eqn = ""
 
     for (let key in data) {
